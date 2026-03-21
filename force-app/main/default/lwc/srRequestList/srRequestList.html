@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Service Requests">
+
+        <template for:each={requests} for:item="req">
+            <c-sr-request-row
+                key={req.Id}
+                request={req}
+                onrequestselect={handleSelect}>
+            </c-sr-request-row>
+        </template>
+
+        <div class="slds-p-around_medium slds-align_absolute-center">
+            <lightning-button
+                label="Prev"
+                onclick={prevPage}
+                disabled={disablePrev}>
+            </lightning-button>
+
+            <span class="slds-p-horizontal_medium">
+                <!-- Page {pageNumber} of {totalPages} -->
+                 <template for:each={pages} for:item="p">
+                    <lightning-button
+                        key={p.value}
+                        label={p.value}
+                        onclick={goToPage}
+                        data-page={p.value}
+                        disabled={p.disabled} 
+                        variant={p.variant}>
+                    </lightning-button>
+                </template>
+            </span>
+
+            <lightning-button
+                label="Next"
+                onclick={nextPage}
+                disabled={disableNext}>
+            </lightning-button>
+        </div>
+
+    </lightning-card>
+</template>

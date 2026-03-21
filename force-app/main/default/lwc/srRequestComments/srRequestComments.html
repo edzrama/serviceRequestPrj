@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Comments">
+        <template if:true={comments}>
+            <template for:each={comments} for:item="c">
+                <div key={c.Id} class="slds-box slds-m-bottom_small">
+                    <p>{c.Comment__c}</p>
+                    <small>{c.Created_By_User__r.Name}</small>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

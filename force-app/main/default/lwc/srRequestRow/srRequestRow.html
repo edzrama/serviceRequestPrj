@@ -1,0 +1,8 @@
+<template>
+    <div class="slds-box slds-m-bottom_small" onclick={handleClick}>
+        <p><strong>{request.Subject__c}</strong></p>
+        <p>Status: {request.Status__c}</p>
+        <p>Priority: {request.Priority__c}</p>
+        <p>Owner: {request.Owner.Name}</p>
+    </div>
+</template>

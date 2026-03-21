@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Request Details">
+        <template if:true={record}>
+            <p><strong>Subject:</strong> {record.fields.Subject__c.value}</p>
+            <p><strong>Status:</strong> {record.fields.Status__c.value}</p>
+            <p><strong>Priority:</strong> {record.fields.Priority__c.value}</p>
+            <p><strong>Description:</strong> {record.fields.Description__c.value}</p>
+            <p><strong>SLA Due:</strong> {record.fields.SLA_Due_Date__c.value}</p>
+        </template>
+    </lightning-card>
+</template>
