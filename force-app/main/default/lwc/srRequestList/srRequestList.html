@@ -1,6 +1,37 @@
 <template>
     <lightning-card title="Service Requests">
 
+         <!-- 🔍 Search -->
+        <lightning-input
+            type="text"
+            label="Search Subject"
+            onchange={handleSearch}>
+        </lightning-input>
+
+        <!-- 🎯 Filters -->
+        <div class="slds-grid slds-gutters slds-m-vertical_small">
+            <lightning-combobox
+                label="Status"
+                value={statusFilter}
+                options={statusOptions}
+                onchange={handleStatusChange}>
+            </lightning-combobox>
+
+            <lightning-combobox
+                label="Priority"
+                value={priorityFilter}
+                options={priorityOptions}
+                onchange={handlePriorityChange}>
+            </lightning-combobox>
+        </div>
+
+        <!-- 🔢 Sort Buttons -->
+        <div class="slds-m-bottom_small">
+            <lightning-button label="Sort by Created Date" data-field="CreatedDate" onclick={handleSort}></lightning-button>
+            <lightning-button label="Sort by Priority" data-field="Priority__c" onclick={handleSort}></lightning-button>
+            <lightning-button label="Sort by Status" data-field="Status__c" onclick={handleSort}></lightning-button>
+        </div>
+
         <template for:each={requests} for:item="req">
             <c-sr-request-row
                 key={req.Id}
