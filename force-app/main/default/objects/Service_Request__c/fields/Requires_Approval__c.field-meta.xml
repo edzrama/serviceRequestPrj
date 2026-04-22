@@ -3,6 +3,7 @@
     <fullName>Requires_Approval__c</fullName>
     <defaultValue>false</defaultValue>
     <label>Requires Approval?</label>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
