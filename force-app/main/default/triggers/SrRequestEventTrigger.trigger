@@ -1,4 +1,5 @@
 trigger SrRequestEventTrigger on Request_Update__e (after insert) {
+    List<FeedItem> postsToInsert = new List<FeedItem>();
 
     for (Request_Update__e event : Trigger.New) {
 
@@ -7,6 +8,17 @@ trigger SrRequestEventTrigger on Request_Update__e (after insert) {
         if (event.Status__c == 'Approved') {
             system.debug('Firing job to create external ticket');
             System.enqueueJob(new SrCreateExternalTicketQueueable(event.Request_Id__c));
+
+            
+            FeedItem post = new FeedItem();
+            post.ParentId = event.Request_Id__c;
+            post.Body = event.Message__c;
+            // Optional: post.Visibility = 'AllUsers';
+            postsToInsert.add(post);
+            
         }
+    }
+    if (!postsToInsert.isEmpty()) {
+            insert postsToInsert;
     }
 }
